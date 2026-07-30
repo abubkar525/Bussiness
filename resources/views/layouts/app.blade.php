@@ -53,23 +53,39 @@
     </main>
 
     {{-- ============ FOOTER ============ --}}
-    <footer class="site-footer">
+    <footer class="site-footer" style="background:var(--color-primary)">
         <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-            <div class="rounded-3xl px-8 py-14 text-center mb-16" style="background:var(--color-primary)">
+            <div class="text-center mb-16">
                 <h3 class="text-white text-2xl md:text-3xl font-semibold mb-6">Ready to operationalize your sustainability goals?</h3>
                 <a href="{{ route('get-started') }}#demo" class="btn btn-light">Request a demo</a>
             </div>
 
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-500">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm pb-8 border-b border-white/10">
                 <div class="flex gap-6 flex-wrap justify-center">
-                    <a href="{{ route('home') }}" class="hover:text-gray-800">Product</a>
-                    <a href="{{ route('journal') }}" class="hover:text-gray-800">Journal</a>
-                    <a href="{{ route('about') }}" class="hover:text-gray-800">About</a>
-                    <a href="{{ route('careers') }}" class="hover:text-gray-800">Careers</a>
+                    <a href="{{ route('home') }}" class="text-gray-300 hover:text-[var(--color-secondary)] transition-colors">Product</a>
+                    <a href="{{ route('journal') }}" class="text-gray-300 hover:text-[var(--color-secondary)] transition-colors">Journal</a>
+                    <a href="{{ route('about') }}" class="text-gray-300 hover:text-[var(--color-secondary)] transition-colors">About</a>
+                    <a href="{{ route('careers') }}" class="text-gray-300 hover:text-[var(--color-secondary)] transition-colors">Careers</a>
                 </div>
-                <a href="{{ route('get-started') }}" class="btn btn-primary btn-sm">Get started</a>
+                <a href="{{ route('get-started') }}" class="btn btn-light btn-sm">Get started</a>
             </div>
-            <p class="text-center text-xs text-gray-400 mt-8">© {{ date('Y') }} · All rights reserved</p>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8">
+                <p class="text-xs text-gray-400 order-2 md:order-1">© {{ date('Y') }} Aetherfield · All rights reserved</p>
+
+                {{-- Social icons --}}
+                <div class="flex items-center gap-5 order-1 md:order-2">
+                    <a href="#" aria-label="LinkedIn" class="text-gray-300 hover:text-[var(--color-secondary)] transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V20.5H6.94V8.5ZM5.25 3.5C4.14 3.5 3.25 4.4 3.25 5.5C3.25 6.6 4.14 7.5 5.25 7.5C6.36 7.5 7.25 6.6 7.25 5.5C7.25 4.4 6.36 3.5 5.25 3.5ZM20.5 20.5V13.9C20.5 10.5 18.9 9 16.6 9C14.77 9 13.86 9.99 13.4 10.75V8.5H10.02C10.06 9.32 10.02 20.5 10.02 20.5H13.4V13.9C13.4 13.55 13.42 13.2 13.53 12.94C13.82 12.24 14.47 11.51 15.57 11.51C17.02 11.51 17.13 12.79 17.13 14.06V20.5H20.5Z"/></svg>
+                    </a>
+                    <a href="#" aria-label="X / Twitter" class="text-gray-300 hover:text-[var(--color-secondary)] transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H21.7L15.4 10.2L22.8 21H17L12.5 14.6L7.3 21H4.5L11.2 13.3L4.1 3H10L14 8.9L18.9 3ZM17.9 19.1H19.4L9.1 4.8H7.5L17.9 19.1Z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram" class="text-gray-300 hover:text-[var(--color-secondary)] transition-colors">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 

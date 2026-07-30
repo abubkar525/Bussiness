@@ -21,14 +21,34 @@
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
 }
+.site-header.scrolled {
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
 
 .nav-link {
+    position: relative;
     color: var(--color-text);
     transition: color .15s ease;
+}
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: var(--color-secondary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .25s ease;
 }
 .nav-link:hover,
 .nav-link-active {
     color: var(--color-primary);
+}
+.nav-link:hover::after,
+.nav-link-active::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 /* ---------- Buttons ---------- */
@@ -42,12 +62,13 @@
     font-weight: 600;
     font-size: .9375rem;
     line-height: 1;
-    transition: background-color .15s ease, color .15s ease, transform .1s ease, box-shadow .15s ease;
+    transition: background-color .15s ease, color .15s ease, transform .15s ease, box-shadow .15s ease;
     cursor: pointer;
     border: 1px solid transparent;
     text-decoration: none;
 }
-.btn:active { transform: scale(0.98); }
+.btn:hover  { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); }
 
 .btn-primary {
     background: var(--color-primary);
@@ -95,6 +116,12 @@
     border: 1px solid var(--color-border);
     border-radius: 1.25rem;
     padding: 2rem;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+    border-color: var(--color-secondary);
 }
 
 .step-number {
@@ -110,102 +137,27 @@
    ========================================================= */
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
+    from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero entrance — plays immediately on page load, no scroll needed */
 .hero-fade {
-    animation: fadeUp .7s ease both;
+    animation: fadeUp .8s cubic-bezier(.16,.84,.44,1) both;
 }
 .hero-fade-delay-1 { animation-delay: .12s; }
 .hero-fade-delay-2 { animation-delay: .24s; }
 .hero-fade-delay-3 { animation-delay: .36s; }
 
-/* Scroll-reveal: single elements fade + slide up when they enter the viewport */
 .reveal {
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity .7s ease, transform .7s ease;
-}
-.reveal.in-view {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Scroll-reveal group: direct children (.reveal-item) fade in one-by-one */
-.reveal-group > .reveal-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity .6s ease, transform .6s ease;
-}
-.reveal-group.in-view > .reveal-item { opacity: 1; transform: translateY(0); }
-.reveal-group.in-view > .reveal-item:nth-child(1) { transition-delay: .05s; }
-.reveal-group.in-view > .reveal-item:nth-child(2) { transition-delay: .15s; }
-.reveal-group.in-view > .reveal-item:nth-child(3) { transition-delay: .25s; }
-.reveal-group.in-view > .reveal-item:nth-child(4) { transition-delay: .35s; }
-
-/* Card hover lift */
-.card {
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-}
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,.08);
-    border-color: var(--color-secondary);
-}
-
-/* Nav link underline sweep */
-.nav-link {
-    position: relative;
-}
-.nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: -4px;
-    width: 0; height: 2px;
-    background: var(--color-secondary);
-    transition: width .25s ease;
-}
-.nav-link:hover::after,
-.nav-link-active::after {
-    width: 100%;
-}
-
-/* Button micro-interaction (in addition to existing .btn transition) */
-.btn:hover { transform: translateY(-2px); }
-.btn:active { transform: translateY(0) scale(0.98); }
-
-/* Image zoom on hover (journal cards etc. already use group-hover:scale-105 in Tailwind) */
-.img-zoom { overflow: hidden; }
-.img-zoom img { transition: transform .5s ease; }
-.img-zoom:hover img { transform: scale(1.06); }
-
-/* Sticky header shadow on scroll */
-.site-header.scrolled {
-    box-shadow: 0 2px 12px rgba(0,0,0,.06);
-}
-
-/* Mobile menu slide-down */
-#mobileMenu {
-    animation: fadeUp .25s ease both;
-}
-
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
-
-/* Scroll-reveal: elements fade + slide up into view */
-.reveal {
-    opacity: 0;
-    transform: translateY(28px);
     transition: opacity .7s cubic-bezier(.16,.84,.44,1), transform .7s cubic-bezier(.16,.84,.44,1);
 }
 .reveal.in-view {
     opacity: 1;
     transform: translateY(0);
 }
-/* Stagger children of a revealed group (add .reveal-group + .reveal-item) */
+
 .reveal-item {
     opacity: 0;
     transform: translateY(20px);
@@ -217,54 +169,16 @@
 .reveal-group.in-view .reveal-item:nth-child(3) { transition-delay: .24s; }
 .reveal-group.in-view .reveal-item:nth-child(4) { transition-delay: .36s; }
 
-/* Hero entrance on page load */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-.hero-title,
-.hero-fade {
-    animation: fadeUp .8s cubic-bezier(.16,.84,.44,1) both;
-}
-.hero-fade-delay-1 { animation-delay: .12s; }
-.hero-fade-delay-2 { animation-delay: .24s; }
-.hero-fade-delay-3 { animation-delay: .36s; }
+.img-zoom { overflow: hidden; }
+.img-zoom img { transition: transform .5s ease; }
+.img-zoom:hover img { transform: scale(1.06); }
 
-/* Card + image hover lift */
-.card {
-    transition: transform .25s ease, box-shadow .25s ease;
-}
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(0,0,0,.08);
+#mobileMenu {
+    animation: fadeUp .25s ease both;
 }
 
-/* Nav link underline sweep */
-.nav-link {
-    position: relative;
-}
-.nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background: var(--color-secondary);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform .25s ease;
-}
-.nav-link:hover::after,
-.nav-link-active::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-/* Button ripple-ish press feedback already via .btn:active scale */
-
-/* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
-    .reveal, .reveal-item, .hero-title, .hero-fade {
+    .reveal, .reveal-item, .hero-fade {
         animation: none !important;
         transition: none !important;
         opacity: 1 !important;

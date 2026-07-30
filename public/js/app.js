@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Smooth-scroll for on-page anchor buttons (e.g. "Explore the platform")
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
         link.addEventListener('click', function (e) {
             const target = document.querySelector(link.getAttribute('href'));
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Scroll-reveal animations: fade + slide elements into view as user scrolls
     const revealTargets = document.querySelectorAll('.reveal, .reveal-group');
     if ('IntersectionObserver' in window && revealTargets.length) {
         const observer = new IntersectionObserver(function (entries, obs) {
@@ -33,11 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         revealTargets.forEach(function (el) { observer.observe(el); });
     } else {
-        // Fallback: no IntersectionObserver support — just show everything
         revealTargets.forEach(function (el) { el.classList.add('in-view'); });
     }
 
-    // Sticky header gets a subtle shadow once the page is scrolled
     const header = document.querySelector('.site-header');
     if (header) {
         window.addEventListener('scroll', function () {
