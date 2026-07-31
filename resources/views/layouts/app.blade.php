@@ -71,7 +71,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8">
-                <p class="text-xs text-gray-400 order-2 md:order-1">© {{ date('Y') }} Aetherfield · All rights reserved</p>
+                <p class="text-xs text-gray-400 order-2 md:order-1">© {{ date('Y') }} Aetherfield (Published by Abubakar) · All rights reserved</p>
 
                 {{-- Social icons --}}
                 <div class="flex items-center gap-5 order-1 md:order-2">
